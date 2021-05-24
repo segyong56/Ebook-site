@@ -1,0 +1,70 @@
+.coverPageMain {
+    max-width: 700px; 
+    margin: 2rem auto;
+}
+
+.coverPageHead {
+    display: flex;
+    margin-top: 80px;
+}
+.coverPageImg {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.coverPageInfos {
+    width: 50%;
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+.coverPageTitle {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.coverPageInfo {
+    margin-top: 100px;
+}
+
+.iconsInfo {
+    display: flex;
+    font-size: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.readBtn {
+    width: 90%;
+    height: 40px !important;
+    font-size: 18px !important;
+}
+
+.coverPageBody {
+    width: 100%;
+}
+
+.coverPageBody_user {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.coverPageUserImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid lightgrey;
+    object-fit: cover;
+    margin-left: 10px;
+}
+
+.userName {
+    margin-left: 10px;
+    font-size: 18px;
+}

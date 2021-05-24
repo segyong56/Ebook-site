@@ -1,0 +1,9 @@
+.ant-list-item-main {
+    height: 188px !important;
+    overflow: hidden;
+}
+
+.ant-list-item-meta-description {
+    height: 110px;
+    overflow: hidden;
+}
