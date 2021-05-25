@@ -126,6 +126,24 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     })
 
 })
+
+exports.getUser = catchAsyncErrors(async (req, res, next) => {
+
+    let user = await User.findById(req.body.userId)
+
+    if(!user) 
+    return next(new ErrorHandler('user cannot be found', 404))
+
+    res.status(200).json({
+
+        success: true,
+        user
+
+    })
+
+})
+
+
 // router.post('/image', (req, res) => {
 
 //     

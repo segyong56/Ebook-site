@@ -4,6 +4,10 @@ import {
     REGISTER_USER,
     AUTH_USER,
     LOGOUT_USER,
+
+    GET_USER,
+
+    UPDATE_PROFILE,
     ADD_TO_READING_LIST
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
@@ -47,6 +51,33 @@ export function logoutUser(){
         payload: request
     }
 }
+
+export function getUser(userId) {
+    const request = axios.post(`${USER_SERVER}/me/mypage`, userId)
+                        .then(response => response.data);
+                return {
+                    type: GET_USER,
+                    payload: request
+                }
+}
+
+export function updateProfile(variables) {
+
+    const request = axios.put(`${USER_SERVER}/me/mypage/edit`, variables)
+                        .then(response => response.data);
+            return {
+                type: UPDATE_PROFILE,
+                payload: request
+            }
+}
+
+// export function editProfile(variables) {
+//     const request = axios.put(`${USER_SERVER}/me/mypage/edit`, variables)
+//                         .then(response => response.data);
+//             return {
+//                 type
+//             }
+// }
 
 export function addToReadingList(_id){
     const request = axios.get(`${USER_SERVER}/addToReadinglist?bookId=${_id}`)

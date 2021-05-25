@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import { Typography, Icon, Form, Input, Button, message } from 'antd'
-import axios from 'axios'
-import Dropzone from 'react-dropzone'
-import { useHistory } from 'react-router-dom'
 
 const { Title } = Typography;
 
-function ProfileHead() {
+function ProfileHead(props) {
 
     return (
         <div>
@@ -15,12 +12,12 @@ function ProfileHead() {
                 <div>
                     <div className="myPageImgarea">
                         <div className="userImg">
-                            <img src="/img/logo.jpg" />
+                            <img src={`http://localhost:5000/${props.profile.profileImg}`} />
                         </div>
                     </div>
                     <br />
                     <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
-                        <Title level={3}>Nick Name</Title>
+                        <Title level={3}>{props.profile.userName}</Title>
                     </div>
                 </div> 
         </div>

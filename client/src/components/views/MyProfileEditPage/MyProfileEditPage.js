@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Icon, Form, Input, Button, message } from 'antd'
 import axios from 'axios'
 import Dropzone from 'react-dropzone'
 import '../MyPagePage/myPage.css'
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { updateProfile } from '../../../_actions/user_actions'
 
 function MyProfileEditPage() {
 
+    const dispatch = useDispatch();
+    const history = useHistory();
     const [ProfileImg, setProfileImg] = useState("")
-
+    const [UserName, setUserName] = useState("")
 
     const onDrop = (files) => {
 
@@ -27,11 +32,34 @@ function MyProfileEditPage() {
                     alert('failed to save the video in server')
                 }
             })
-
     }
+
+    const userNameHandler = (event) => {
+        setUserName(event.currentTarget.value)
+    }
+
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        const variables = {
+            userId: localStorage.userId,
+            profileImg: ProfileImg,
+            userName: UserName,
+        }
+
+        dispatch(updateProfile(variables))
+            .then(response => {
+                if (response.payload) {
+                    message.success('successfully added')
+                    setTimeout(() => {
+                        history.push('/me/mypage')
+                    }, 1000);
+                } else {
+                    message.error('cannot be added')
+                }
+            })
+
     }
 
     return (
@@ -69,8 +97,7 @@ function MyProfileEditPage() {
                     <br />
                     <Form.Item label="Name" >
                         <Input
-                            onChange
-                            defaultValue
+                            onChange={userNameHandler}
                         />
                     </Form.Item>
                     <Button type='dashed' style={{ width: '100%' }} onClick={onSubmit}>Save</Button>

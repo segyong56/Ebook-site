@@ -7,22 +7,36 @@ import WorkingList from './Sections/WorkingList'
 import ProfileHead from './Sections/ProfileHead'
 import EditProfile from './Sections/EditProfile'
 import MyFollowingUser from './Sections/MyFollowingUser'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { getUser } from '../../../_actions/user_actions'
 
 const { Title } = Typography;
 const { TabPane } = Tabs;
 
 function MyPagePage(props) {
 
+    const dispatch = useDispatch();
     const [UserInfo, setUserInfo] = useState(null)
-    const [ProfileInfo, setProfileInfo] = useState(null)
+    const [ProfileInfo, setProfileInfo] = useState([])
     const user = useSelector(state => state.user)
    
 
     useEffect(() => {
 
-       
+       const variable = {
+           userId : localStorage.userId
+       }
 
+       dispatch(getUser(variable))
+                .then(response => {
+                    if(response.payload){
+                        console.log(response.payload)
+                        setProfileInfo(response.payload.user.profile[0])
+                    } else {
+                        alert('user cannot be found')
+                    }
+                })
 
     }, [])
 
@@ -30,13 +44,12 @@ function MyPagePage(props) {
     const callback = (key) => {
         console.log(key);
     }
-
-
+    
     return (
         <div style={{ width: '1000px', margin: '2rem auto' }}>
             <br />
             <br />
-            <ProfileHead />
+            <ProfileHead profile={ProfileInfo} />
             <br />
             <br />
             {/* <Tabs defaultActiveKey="1" onChange={callback}>

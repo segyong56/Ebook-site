@@ -41,7 +41,7 @@ function RightMenu(props) {
     return (
       <Menu mode={props.mode}>
         <Menu.Item key="search">
-          <a href="/book/search">Search<Icon type="search" style={{ marginLeft:'5px',  fontSize: '1.2rem'}} /></a>
+          <a href="/search">Search<Icon type="search" style={{ marginLeft:'5px',  fontSize: '1.2rem'}} /></a>
         </Menu.Item>
         <Menu.Item key="mypage">
         <Popover placement="leftTop" content={content} trigger="click">

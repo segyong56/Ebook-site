@@ -7,6 +7,7 @@ const {
     logoutUser,
 
     authUser,
+    getUser,
 
     profileImgUpload,
     updateProfile
@@ -20,7 +21,9 @@ router.route('/login').post(loginUser)
 router.route('/logout').get(auth, logoutUser)
 
 router.route('/auth').get(auth, authUser)
+router.route('/me/mypage').post(auth, getUser)
 
-router.route('/image').post(profileImgUpload)
-router.route('/update_profile').put(updateProfile)
+router.route('/image').post(auth, profileImgUpload)
+router.route('/me/mypage/edit').put(auth, updateProfile)
+
 module.exports = router;

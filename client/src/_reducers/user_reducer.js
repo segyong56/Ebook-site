@@ -3,6 +3,11 @@ import {
     REGISTER_USER,
     AUTH_USER,
     LOGOUT_USER,
+
+    GET_USER,
+
+    UPDATE_PROFILE,
+
     ADD_TO_READING_LIST,
 } from '../_actions/types';
 
@@ -28,15 +33,29 @@ export default function (state = {}, action) {
             return { 
                 ...state 
             }
+        case GET_USER:
+            return {
+                ...state,
+                userData: action.payload
+            }
+        case UPDATE_PROFILE:
+            return {
+                ...state,
+                userData: {
+                    ...state.userDate,
+                    profile: action.payload
+                }
+            }
         case ADD_TO_READING_LIST:
             return {
-                ...state, 
+                ...state,
                 userData: {
-                    ...state.userData,
-                    readinglist: action.payload
+                    ...state.userDate,
+                    readinglist : action.payload
                 }
             }
         default:
             return state;
     }
 }
+
